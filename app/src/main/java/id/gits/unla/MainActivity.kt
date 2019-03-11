@@ -1,9 +1,10 @@
 package id.gits.unla
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.widget.Toast
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.android.synthetic.main.main_content.*
 import java.util.*
@@ -18,9 +19,13 @@ class MainActivity : AppCompatActivity() {
         rvList.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = MainAdapter(loadData() as ArrayList<News>, this@MainActivity) {
-                Toast
-                    .makeText(context, "Clicked to detail!", Toast.LENGTH_LONG)
-                    .show()
+                startActivity(
+                    Intent(this@MainActivity, MainDetailActivity::class.java).apply {
+                        putExtra("news-key", it)
+                        putExtra("string-key", Gson().toJson(it))
+//                        flags
+                    }
+                )
             }
         }
     }
