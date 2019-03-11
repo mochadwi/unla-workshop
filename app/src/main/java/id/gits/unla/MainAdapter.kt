@@ -51,7 +51,6 @@ class MainAdapter(
             clickListener: (News) -> Unit
         ) = containerView.apply/**/ {
             with(item) {
-                //                iv_item_image.setImageBitmap(getImageBitmap(imageUrl ?: "")) // conversion from image url into image uri
                 tv_item_title.text = title
                 tv_item_description.text = description
                 setOnClickListener { clickListener(this) } // Go to detail activity
